@@ -1,0 +1,22 @@
+
+*
+  padding: 0
+  margin: 0
+$bg-img: '../../assets/img/bgimg.png'
+$border: 1px solid red
+
+
+
+
+
+@mixin bg-img
+  background: url($bg-img)
+  background-repeat: repeat
+@mixin border
+  border: $border
+@media(max-width:860px)
+  .demoM
+    min-width: 860px
+@media(max-width:1150px)
+  .demoN
+    width: 1150px

@@ -1,0 +1,82 @@
+export const ADD_BIAOTI = 'ADD_BIAOTI'
+
+export const ADD_NEIRONG = 'ADD_NEIRONG'
+
+export const ADD_TISHI = 'ADD_TISHI'
+
+export const CUT_BIAOTI = 'CUT_BIAOTI'
+
+export const CUT_NEIRONG = 'CUT_NEIRONG'
+
+export const CUT_TISHI = 'CUT_TISHI'
+
+
+export const ADD_DANXUAN = 'ADD_DANXUAN'
+
+export const ADD_DANXUANBIAOTI = 'ADD_DANXUANBIAOTI'
+
+export const ADD_DANXUANXIANG = 'ADD_DANXUANXIANG'
+
+export const ADD_IMGURLDAN = 'ADD_IMGURLDAN'
+
+
+export const CUT_DANXUANBIAOTI = 'CUT_DANXUANBIAOTI'
+
+export const CUT_DANXUANXIANG = 'CUT_DANXUANXIANG'
+
+export const CUT_IMGURLDAN = 'CUT_IMGURLDAN'
+
+export const CUT_DANXUANER = 'CUT_DANXUANER'
+
+export const CHANGE_ADDC = 'CHANGE_ADDC'
+
+
+export const ADD_MULTI = 'ADD_MULTI'
+export const CUT_MULTI = 'CUT_MULTI'
+
+export const ADD_MULTIBIAOTI = 'ADD_MULTIBIAOTI'
+export const CUT_MULTIBIAOTI = 'CUT_MULTIBIAOTI'
+
+export const ADD_IMGURLMULTI = 'ADD_IMGURLMULTI'
+export const CUT_IMGURLMULTI  = 'CUT_IMGURLMULTI'
+
+export const ADD_MULTIXIANG = 'ADD_MULTIXIANG'
+export const CUT_MULTIXIANG  = 'CUT_MULTIXIANG'
+export const ADD_MULTI_ALL = 'ADD_MULTI_ALL'
+
+
+export const ADD_DANXUAN_ALL = 'ADD_DANXUAN_ALL'
+export const CUT_DANXUAN_ALL = 'CUT_DANXUAN_ALL'
+
+export const SPL_XIANG = 'SPL_XIANG'
+export const SPL_XIANG2 = 'SPL_XIANG2'
+export const SPL_XIANG3 = 'SPL_XIANG3'
+export const SPL_IMG = 'SPL_IMG'
+export const SPL_BIAO = 'SPL_BIAO'
+
+export const SET_PLAYING_STATE = 'SET_PLAYING_STATE'
+export const CHANGE_ZHI = 'CHANGE_ZHI'
+export const CHANGE_EDIT = 'CHANGE_EDIT'
+export const CHANGE_SERIAL = 'CHANGE_SERIAL'
+export const CHANGE_EDITSUC = 'CHANGE_EDITSUC'
+
+
+export const ADD_ADDC = 'ADD_ADDC'
+export const CUT_ADDC = 'CUT_ADDC'
+
+export const ADD_JISU = 'ADD_JISU'
+export const CUT_JISU = 'CUT_JISU'
+
+
+export const ADD_WENDA = 'ADD_WENDA'
+export const ADD_WENDABIAOTI = 'ADD_WENDABIAOTI'
+export const CUT_WENDABIAOTI = 'CUT_WENDABIAOTI'
+
+export const ADD_IMGURLWENDA = 'ADD_IMGURLWENDA'
+export const CUT_IMGURLWENDA = 'CUT_IMGURLWENDA'
+
+
+
+export const SET_CURRENT_INDEX = 'SET_CURRENT_INDEX'
+
+export const SET_CURRENT_INDEX_DUO = 'SET_CURRENT_INDEX_DUO'
