@@ -1,0 +1,99 @@
+syntax = "proto3";
+
+import "member_noauth.proto";
+package pb;
+
+// 代理页面返回接口
+
+message ApplyInfo {
+    ApplySettingResp setting = 1 ;
+    BankListResp bank = 2 ;
+}
+
+// 代理申请设置
+message ApplySettingResp {
+    // 是否启用
+    int64 isOpen = 1;
+    // 中文昵称
+    int64 chineseNickName = 2;
+    // 英文昵称
+    int64 englishNickName = 3;
+    // 手机号码
+    int64 telephone = 4;
+    // 邮箱
+    int64 email = 5;
+    // QQ
+    int64 qq = 6;
+    // 微信号
+    int64 wechat = 7;
+    // 备注
+    int64 remark = 8;
+    // 推广网址
+    int64 promoteSite = 9;
+    // 其他推广方式
+    int64 otherPromoteWay = 10;
+}
+
+// 代理申请注册
+message ProxyApplyReq {
+    // 中文昵称
+    // @inject_tag: valid:"Min(1);Max(50);ErrorCode(6645)"
+    string chineseNickName = 1;
+    // 英文昵称
+    // @inject_tag: valid:"Min(1);Max(50);ErrorCode(6646)"
+    string englishNickName = 2;
+    // 电话
+    // @inject_tag: valid:"Min(1);Max(20);ErrorCode(6647)"
+    string telephone = 3;
+    // 电子邮箱
+    // @inject_tag: valid:"Min(1);Max(50);ErrorCode(6648)"
+    string email = 4;
+    // QQ
+    // @inject_tag: valid:"Min(1);Max(20);ErrorCode(2048)"
+    string qq = 5;
+    // 微信号
+    // @inject_tag: valid:"Min(1);Max(20);ErrorCode(2049)"
+    string wechat = 6;
+    // 推广网站
+    // @inject_tag: valid:"Min(1);Max(255);ErrorCode(6644)"
+    string promoteSite = 7;
+    // 其他推广方式
+    // @inject_tag: valid:"Min(1);Max(255);ErrorCode(6643)"
+    string otherPromoteWay = 8;
+    // 备注
+    // @inject_tag: valid:"Min(1);Max(255);ErrorCode(6508)"
+    string remark = 9;
+    // 登录账号
+    // @inject_tag: valid:"Must;Min(5);Max(12);ErrorCode(6095)"
+    string account = 10;
+    // 登录密码
+    // @inject_tag: valid:"Must;Min(6);ErrorCode(8202)"
+    string password = 11;
+    // 重复密码
+    // @inject_tag: valid:"Must;Min(6);ErrorCode(6649)"
+    string rePassword = 12;
+    // 身份证
+    // @inject_tag: valid:"Must;Length(18);ErrorCode(2043)"
+    string idCard = 13;
+    // 真实姓名
+    // @inject_tag: valid:"Must;Min(1);Max(10);ErrorCode(2040)"
+    string realName = 14;
+    // 验证码
+    // @inject_tag: valid:"Must;Max(4);ErrorCode(2062)"
+    string code = 15;
+    // 验证码标示
+    // @inject_tag: valid:"Must;ErrorCode(2062)"
+    string codeId = 16;
+    // 银行
+    // @inject_tag: valid:"Must;ErrorCode(5007)"
+    string bankName = 17;
+    // 银行账号
+    // @inject_tag: valid:"Must;ErrorCode(2060)"
+    string bankNum = 18;
+    // 省份
+    // @inject_tag: valid:"Must;ErrorCode(2045)"
+    string province = 19;
+    // 市区
+    // @inject_tag: valid:"Must;ErrorCode(2046)"
+    string city = 20;
+}

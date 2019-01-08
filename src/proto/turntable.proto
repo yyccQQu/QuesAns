@@ -1,0 +1,134 @@
+syntax = "proto3";
+
+package pb;
+
+// 大转盘id
+message TurntableInfoReq {
+    // @inject_tag: valid:"Must;ErrorCode(1007)"
+    int64 id = 1;
+}
+
+// 大转盘数据返回
+message TurntableResp {
+    AgencyTurntable table = 1;
+    repeated AgencyTurntablePrize prizes = 2;
+    // 剩余的转大转盘的次数
+    int64 num = 3;
+}
+
+// 大转盘数据
+message AgencyTurntable {
+    // ID
+    int64 id = 1;
+    // 站点ID
+    string siteId = 2;
+    // 标题
+    string title = 3;
+    // 开始时间
+    int64 startTime = 4;
+    // 结束时间
+    int64 endTime = 5;
+    // 稽核倍数
+    int64 check = 6;
+    // 状态 1启用 2停用
+    int32 status = 7;
+    // 网站ID逗号分隔
+    string siteIndexId = 8;
+    // 会员分组a-1,2,3+b-5,6,7...
+    string memberLevelId = 9;
+    // 操作人
+    string account = 10;
+    // 累计存款金额
+    double saving = 11;
+    // 累计消费金额
+    double spending = 12;
+    // 创建时间
+    int64 createTime = 13;
+    // 更新时间
+    int64 updateTime = 14;
+    // 删除时间
+    int64 deleteTime = 15;
+    // 数据版本号
+    int64 version = 16;
+}
+
+// 大转盘奖项
+message AgencyTurntablePrize {
+    // ID
+    int64 id = 1;
+    // 转盘活动ID
+    int64 turntableId = 2;
+    // 站点ID
+    string siteId = 3;
+    // 奖项序号
+    int64 prizeNo = 4;
+    // 奖项类型 1现金奖励 2再抽一次 3谢谢参与
+    int64 prizeType = 5;
+    // 奖项来源 1系统默认 2开户人添加
+    int64 prizeFrom = 6;
+    // 奖项名称
+    string prizeName = 7;
+    // 奖项金额
+    double prizeFee = 8;
+    // 中奖概率,单位：万分之,需要（百分之）时请除以10000
+    int64 prizeChance = 9;
+    // 剩余奖项库存数
+    int64 prizeStock = 10;
+}
+
+// 大转盘抽奖请求数据
+message TurntableReceiveReq {
+    // 大转盘活动ID
+    // @inject_tag: valid:"Must;ErrorCode(1007)"
+    int64 turntableId = 1;
+    // 奖项ID
+    // @inject_tag: valid:"Must;ErrorCode(1007)"
+    int64 prizeId = 2;
+}
+
+// 奖品id
+message PrizeResp {
+    int64 id = 1;
+}
+
+// 中奖记录
+message TurntableWinningRecord {
+    // 转盘活动标题
+    string turntableTitle = 1;
+    // 会员名称
+    string memberName = 2;
+    // 奖项名称
+    string prizeName = 3;
+    // 奖项金额（分）,需要（元）时,请转换
+    double prizeFee = 4;
+    // 中奖时间
+    int64 winningTime = 5;
+}
+
+// 中奖记录返回
+message TurntableWinningRecordResp {
+    repeated TurntableWinningRecord turntableWinningRecord = 1;
+}
+
+// 大转盘数据
+message TurnTableOneResp {
+    // 主键
+    int64 id = 1;
+    // 标题
+    string title = 2;
+    // 大转盘奖项
+    repeated Prize prize = 3;
+}
+
+// 大转盘奖项
+message Prize {
+    // 奖项序号
+    int64 prizeNo = 1;
+    // 奖项名称
+    string prizeName = 2;
+    // 奖项类型 1现金奖励 2再抽一次 3谢谢参与
+    int64 prizeType = 3;
+    // 奖项金额
+    double prizeFee = 4;
+}
+

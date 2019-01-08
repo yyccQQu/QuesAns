@@ -1,0 +1,70 @@
+syntax = "proto3";
+
+package pb;
+
+// 注册
+message MemberRegisterReq {
+    // 账号
+    // @inject_tag: valid:"Must;Min(5);Max(12);ErrorCode(8201)"
+    string account = 1;
+    // 密码
+    // @inject_tag:  valid:"Must;Min(6);Max(20);ErrorCode(8202)"
+    string password = 2;
+    // 确认密码
+    // @inject_tag: valid:"Must;Min(6);Max(20);ErrorCode(6121)"
+    string confirmPassword = 3;
+    // 介绍人(代理推广a+id,会员推广m+id)
+    string spreadId = 4;
+    // 验证码
+    // @inject_tag: valid:"Must;Min(4);Max(4);ErrorCode(2062)"
+    string code = 6;
+    // 阅读并同意注册协议
+    bool readAgree = 8;
+    // 验证码标示
+    // @inject_tag: valid:"Must;ErrorCode(2062)"
+    string codeId = 9;
+}
+
+// 登录
+message MemberLoginReq {
+    // 账号
+    // @inject_tag: valid:"Must;Min(5);Max(12);ErrorCode(8201)"
+    string account = 1;
+    // 密码
+    // @inject_tag:  valid:"Must;Min(6);Max(20);ErrorCode(8202)"
+    string password = 2;
+    // 验证码
+    // @inject_tag: valid:"Must;Min(4);Max(4);ErrorCode(2062)"
+    string code = 3;
+    // 验证码标示
+    // @inject_tag: valid:"Must;ErrorCode(2062)"
+    string codeId = 4;
+}
+
+// session返回
+message SessionResp {
+    string sessionId = 1;
+}
+
+//  注册协议返回
+message RegProtocolResp {
+    // 主键id
+    int64 id = 1;
+    // 标题
+    string title = 2;
+    // 内容
+    string content = 3;
+}
+
+// 银行列表返回
+message BankListResp {
+    repeated BankList bank = 1;
+}
+
+// 银行列表
+message BankList {
+    // 主键id
+    int64 id = 1;
+    // 银行名称
+    string title = 2;
+}

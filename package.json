@@ -18,10 +18,16 @@
     "less": "^2.7.3",
     "less-loader": "^4.0.5",
     "mockjs": "^1.0.1-beta3",
-    "vue": "^2.5.2",
-    "vue-router": "^3.0.1",
     "vue-touch": "^1.1.0",
-    "vuex": "^3.0.1"
+    "vuex": "^3.0.1",
+
+    "extract-text-webpack-plugin": "^3.0.2",
+    "google-protobuf": "^3.6.1",
+    "jquery": "^1.12.4",
+    "vee-validate": "^2.0.0",
+    "vue": "^2.5.17",
+    "vue-clipboard2": "^0.2.1",
+    "vue-router": "^3.0.1"
   },
   "devDependencies": {
     "autoprefixer": "^7.1.2",
@@ -49,13 +55,24 @@
     "ora": "^1.2.0",
     "rimraf": "^2.6.0",
     "url-loader": "^0.5.8",
-    "vue-loader": "^13.3.0",
     "vue-style-loader": "^3.0.1",
-    "vue-template-compiler": "^2.5.2",
     "portfinder": "^1.0.13",
     "webpack": "^3.6.0",
     "webpack-dev-server": "^2.9.1",
-    "webpack-merge": "^4.1.0"
+    "webpack-merge": "^4.1.0",
+    
+    "@vue/cli-plugin-babel": "^3.0.1",
+    "@vue/cli-service": "^3.0.1",
+    "fastclick": "^1.0.6",
+    "less": "^3.0.4",
+    "less-loader": "^4.1.0",
+    "mint-ui": "^2.2.13",
+    "protobufjs": "^6.8.8",
+    "vue-awesome-swiper": "^2.4.0",
+    "vue-i18n": "^8.3.0",
+    "vue-resource": "^1.5.1",
+    "vue-template-compiler": "^2.5.17",
+    "vue-loader": "^13.3.0"
   },
   "engines": {
     "node": ">= 4.0.0",

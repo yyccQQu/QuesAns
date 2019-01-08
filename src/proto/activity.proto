@@ -1,0 +1,99 @@
+syntax = "proto3";
+
+package pb;
+
+// 活动id
+message ActivityReq {
+    //  @inject_tag: valid:"Must;ErrorCode(1007)"
+    int32 id = 1;
+}
+
+// 活动列表
+message ActivityList {
+    // 活动主键id
+    int64 id = 5;
+    // 标题
+    string title = 1;
+    // 内容
+    string content = 2;
+    // 图片
+    string wapImg = 3;
+    // 状态1未开始 2进行中   3已结束
+    int32 status = 4;
+}
+
+// 活动列表返回
+message ActivityListResp {
+    repeated ActivityList activityList = 1;
+}
+
+// 活动领取后的返回数据
+message ActivityReceiveResp {
+    // 开始时间
+    int64 beginTime = 1;
+    // 结束时间
+    int64 endTime = 2;
+    // 奖励金额
+    int64 rewardMoney = 3;
+    // 再消费金额
+    int64 againBet = 4;
+    // 再领取奖励金额
+    int64 againMoney = 5;
+}
+
+// 自助优惠申请
+message PromotionApplyReq {
+    // 活动id
+    // @inject_tag: valid:"Must;ErrorCode(5180)"
+    int64 activityId = 1;
+    // 申请金额
+    // @inject_tag: valid:"Must;ErrorCode(5181)"
+    double depositMoney = 2;
+    // 申请备注
+    string remark = 3;
+    // 验证码
+    string code = 4;
+    // 验证码id
+    string codeId = 5;
+}
+
+// 自助优惠列表
+message PromotionList {
+    // 活动主键id
+    int64 id = 5;
+    // 标题
+    string proTitle = 1;
+    // 内容
+    string proContent = 2;
+    // 图片
+    string wapImg = 3;
+    // 状态1未开始 2进行中   3已结束
+    int32 status = 4;
+}
+
+// 自助优惠列表返回
+message PromotionListResp {
+    repeated PromotionList promotionList = 1;
+}
+
+// 自助优惠记录
+message PromotionRecord {
+    // 活动标题
+    string activityTitle = 1;
+    // 申请时间
+    int32 createTime = 2;
+    // 申请金额
+    double depositMoney = 3;
+    // 实得金额
+    double actualMoney = 4;
+    // 状态1未处理2已确认,3拒绝
+    int32 status = 5;
+}
+
+// 自助优惠记录返回
+message PromotionRecordResp {
+    // 总金额
+    double money = 1;
+    // 自助优惠记录
+    repeated PromotionRecord promotionRecord = 2;
+}

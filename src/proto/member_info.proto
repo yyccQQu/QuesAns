@@ -1,0 +1,174 @@
+syntax = "proto3";
+
+import "member_switch.proto" ;
+import "message.proto" ;
+
+package pb;
+
+// 我的顶部返回数据
+message Myself {
+    // 账号
+    string account = 1;
+    // 系统余额
+    double balance = 2;
+}
+
+// 会员信息
+message Member {
+    // 账号
+    string account = 1;
+    // 昵称
+    string nickname = 2;
+    // 国家
+    string country = 3;
+    // 省
+    string province = 4;
+    // 市
+    string city = 5;
+    // 最后登录时间
+    int64 loginLastTime = 6;
+}
+
+// 会员详细信息
+message MemberInfo {
+    // 姓名
+    string realName = 1;
+    // 身份证
+    string idCard = 2;
+    // 手机
+    string mobile = 3;
+    // 邮箱
+    string email = 4;
+    // qq
+    string qq = 5;
+    // 微信
+    string wechat = 6;
+    // 生日
+    string birthday = 7;
+}
+
+// 会员中心
+message MemberCenter {
+    Myself info = 1 ;
+    MemberSwitchInfo switch = 2 ;
+    UnReadResp unread = 3 ;
+}
+
+// 会员个人资料返回
+message MemberInfoResp {
+    Member member = 1;
+    MemberInfo memberInfo = 2;
+}
+
+// 修改会员信息
+message MemberUpdateRep {
+    // 昵称
+    // @inject_tag: valid:"Max(20);ErrorCode(2057)"
+    string nickname = 1;
+    // 身份证
+    // @inject_tag: valid:"Max(20);ErrorCode(2043)"
+    string idCard = 2;
+    // 手机
+    // @inject_tag: valid:"Max(20);ErrorCode(2047)"
+    string mobile = 3;
+    // 邮箱
+    // @inject_tag: valid:"Max(20);ErrorCode(6648)"
+    string email = 4;
+    // qq
+    // @inject_tag: valid:"Max(20);ErrorCode(2048)"
+    string qq = 5;
+    // 微信
+    // @inject_tag: valid:"Max(20);ErrorCode(2049)"
+    string wechat = 6;
+    // 生日
+    // @inject_tag: valid:"Max(20);ErrorCode(2041)"
+    string birthday = 7;
+    // 国家
+    // @inject_tag: valid:"Max(20);ErrorCode(2042)"
+    string country = 8;
+    // 省
+    // @inject_tag: valid:"Max(20);ErrorCode(2045)"
+    string province = 9;
+    // 市
+    // @inject_tag: valid:"Max(20);ErrorCode(2046)"
+    string city = 10;
+}
+
+//  修改密码
+message EidtMemberPasswordReq {
+    // 密码类型
+    // @inject_tag: valid:"Must;ErrorCode(6111)"
+    int32 passType = 1;
+    // 密码
+    // @inject_tag: valid:"Min(6);Max(20);ErrorCode(11015)"
+    string password = 2;
+    //新密码
+    // @inject_tag: valid:"Min(6);Max(20);ErrorCode(11016)"
+    string newPass = 3;
+    //重复密码
+    // @inject_tag: valid:"Min(6);Max(20);ErrorCode(11017)"
+    string confirmPass = 4;
+}
+
+// 会员银行卡列表
+message MemberBankList {
+    // 主键id
+    int64 id = 1;
+    // 银行id
+    int64 bankId =7;
+    // 银行名称
+    string bankName = 2;
+    // 卡号
+    string card = 3;
+    // 户主名
+    string username = 4;
+    // 是否默认
+    int32 isDefault = 5;
+    // 支行
+    string subbranch = 6;
+}
+
+// 会员银行卡列表返回
+message MemberBankListResp {
+    repeated MemberBankList memberBankList = 1;
+}
+
+// 银行卡下拉框
+message BankCardDrop {
+    // 主键id
+    int64 id = 1;
+    // 银行名称
+    string title = 2;
+}
+
+// 银行卡下拉框返回
+message BankCardDropResp {
+    repeated BankCardDrop bankCardDrop = 1;
+}
+
+// 是否有户主名(会员基本信息表中姓名是否存在)
+message IsHasUsernameResp {
+    string username = 1;
+}
+
+// 添加会员银行卡
+message AddMemberBankCardReq {
+    // 银行id
+    // @inject_tag: valid:"Must;Min(1);ErrorCode(2059)"
+    int64 bankId = 1;
+    // 卡号
+    // @inject_tag: valid:"Must;Min(16);Max(20);ErrorCode(2060)"
+    string card = 2;
+    // 支行
+    // @inject_tag: valid:"Must;Min(1);Max(20);ErrorCode(6616)"
+    string subbranch = 3;
+    // 户主名
+    // @inject_tag: valid:"Must;Min(1);ErrorCode(2058)"
+    string username = 4;
+}
+
+// 会员银行id
+message MemberIdReq {
+    // @inject_tag: valid:"Must;Min(1);ErrorCode(2059)"
+    int64 id = 1;
+}

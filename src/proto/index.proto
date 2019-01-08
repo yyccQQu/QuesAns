@@ -1,0 +1,354 @@
+syntax = "proto3";
+
+package pb;
+
+// 首页接口返回数据
+message IndexDataResp {
+    // logo图片连接
+    string logoUrl = 1;
+    // 轮播图数据
+    repeated FrontSiteFlashResp flash = 2;
+    // 红包数据
+    RedPacketSetResp red = 3;
+    // 全屏动画数据
+    FullScreenResp fullScreen = 4;
+    // 广告
+    repeated AdvResp adv = 5;
+    // 前台公告数据
+    repeated IndexNoticeResp notice = 6;
+    // 游戏
+    repeated GameTypeInfo gameInfo = 7;
+    // 热门游戏
+    repeated ProductInfo hotGame = 8;
+    // cdn地址
+    string cdn = 9 ;
+    // 标题
+    string title = 10;
+}
+
+// 最近玩的游戏
+message RecentGameResp {
+    repeated ProductInfo game = 1;
+    // cdn地址
+    string cdn = 2 ;
+}
+
+// 轮播图数据返回
+message FrontSiteFlashResp {
+    int64 id = 1;
+    //标题',
+    string imgTitle = 4;
+    //图片地址',
+    string imgUrl = 5;
+    //跳转地址',
+    string linkUrl = 6;
+    //1外链 2内链',
+    int64 isLink = 7;
+    //类型 1-PC端 2-WAP端',
+    int64 ftype = 8;
+    //排序,
+    int64 sort = 9;
+}
+
+// 红包数据
+message RedPacketSetResp {
+    // 红包活动ID
+    int64 id = 1;
+    // 标题
+    string title = 2;
+    // 活动简介
+    string description = 3;
+    // 红包总额
+    double totalMoney = 4;
+    // 红包图片
+    string bgPic = 5;
+}
+
+// 全屏动画数据
+message FullScreenResp {
+    // 全屏动画类型   1:H5 2:图片
+    int64 type = 1;
+    // 图片动画数据
+    repeated AgencyFullScreenAnimation img = 2;
+    // h5动画数据
+    AgencyFullScreenAnimation h5 = 3;
+}
+
+// 全屏动画详情数据
+message AgencyFullScreenAnimation {
+    // 全屏动画主键ID
+    int64 id = 1;
+    // 标题
+    string title = 2;
+    //  生效起点时间
+    int64 startTime = 3;
+    // 生效终点时间
+    int64 endTime = 4;
+    // 显示的图片
+    string img = 5;
+    // 链接类型 1内链 2外链
+    int64 linkType = 6;
+    // 链接地址
+    string linkUrl = 7;
+    // 如果类型为h5时，需要一个文件地址
+    string h5File = 8;
+    // h5的链接地址
+    string h5Url = 9;
+}
+
+// 广告数据返水
+message AdvResp {
+    // 广告标题
+    string title = 1;
+    // 广告内容
+    string content = 2;
+    // 广告开始时间
+    int64 beginTime = 3;
+    // 广告结束时间
+    int64 endTime = 4;
+    // 广告链接
+    string advUrl = 5;
+    // 1 外链 2内链
+    int64 isLink = 6;
+    // 备注
+    string remark = 7;
+    // 排序
+    int64 sort = 8;
+}
+
+// 公告查询接受参数
+message QueryNoticeReq {
+    // 公告显示位置
+    // @inject_tag: valid:"Must;ErrorCode(6052)"
+    int64 position = 1;
+    // 公告分类 -1系统公告 -2维护公告 -3上新公告 -4活动公告 -5其他公告 -6弹窗公告 >0游戏类公告(按游戏类别的id)
+    int64 cate = 2;
+    // 游戏ID
+    // @inject_tag: valid:"Min(1);Max(5);ErrorCode(7000)"
+    int64 isGame = 3;
+}
+
+// 首页数据返回
+message SiteInfoData {
+    // logo图片连接
+    string logoUrl = 1;
+    // 轮播图数据
+    repeated FrontSiteFlashResp flash = 2;
+    // 红包数据
+    RedPacketSetResp red = 3;
+    // 全屏动画数据
+    FullScreenResp fullScreen = 4;
+    // 广告
+    repeated AdvResp adv = 5;
+}
+
+// 前台公告返回
+message IndexNoticeResp {
+    // 公告ID
+    int64 id = 1;
+    // 标题
+    string title = 2;
+    // 内容
+    string content = 3;
+    // 创建时间
+    int64 createTime = 4;
+}
+
+// 前台公告数据
+message NoticeResp {
+    // 前台公告数据
+    repeated IndexNoticeResp notice = 1;
+}
+
+// 彩票游戏数据
+message GameFc {
+    // 彩票游戏ID
+    int64 id = 1;
+    // 彩票名字
+    string fcName = 2;
+    // 彩票类型
+    string fcType = 3;
+    // 彩票分类
+    string fcLxType = 4;
+    // 彩票链接
+    string fcHref = 5;
+    // 排序 越大越靠前
+    int64 fcSort = 6;
+    // 是否热门彩票1是2否
+    int64 hot = 7;
+    // 上级彩票的ID 对应的商品ID
+    int64 topId = 8;
+    // 状态 1:有效 2:无效 3:维护
+    int64 status = 9;
+    // 视讯图片url
+    string iconUrl = 10;
+}
+
+// 电子游戏数据
+message GameDz {
+    // 父类型idslots，2games，3poker，5
+    int64 topid = 1;
+    // 子类型idslots，12slots，13，14
+    int64 itemid = 2;
+    // 游戏id
+    string gameid = 3;
+    // 名字
+    string name = 4;
+    // 图片
+    string image = 5;
+    // 1正常，0不可用，2维护
+    int64 status = 6;
+    // 推荐度
+    int64 recommend = 7;
+    // 试玩线路开启为1关闭为2
+    int64 isSw = 8;
+    // 正式线路开启为1关闭为2'
+    int64 isZs = 9;
+    // 产品id
+    int64 parentId = 10;
+    // 设备1pc2wap'
+    int64 device = 11;
+}
+
+
+message GameProduct {
+    // 主键id
+    int64 id = 1;
+    // 游戏游戏名
+    string productName = 2;
+    // 游戏类型id
+    int64 typeId = 3;
+    // 视讯id
+    int64 platformId = 4;
+    // 排序
+    int64 sort = 5;
+    // 视讯名称
+    string platformName = 6;
+    // 游戏类型名称
+    string typeName = 7;
+    // 视讯图片url
+    string iconUrl = 8;
+}
+
+// 游戏详情
+message GameInfo {
+    // 视讯id
+    int64 platformId = 1;
+    // 视讯名称
+    string platformName = 2;
+    // 游戏类型id
+    int64 typeId = 3;
+    // 游戏类别名
+    string typeName = 4;
+    // 维护内容
+    string content = 5;
+    // 是否维护
+    int64 isWh = 6;
+    // 游戏列表
+    repeated GameProduct productList = 7;
+    // 电子游戏列表
+    repeated GameDz eGame = 8;
+    // 彩票游戏列表
+    repeated GameFc fcGame = 9;
+    // 视讯图片url
+    string iconUrl = 10;
+}
+
+// 游戏类型详情
+message GameTypeInfo {
+    // 主键id
+    int64 id = 1;
+    // 类型名称
+    string title = 2;
+    // 状态 1启用 2停用
+    int64 status = 3;
+    // 排序
+    int64 sort = 4;
+    // 子导航
+    repeated GameInfo platformNameList = 5;
+}
+
+// 游戏详情
+message ProductInfo {
+    //主键id
+    int64 id = 1;
+    //游戏游戏名
+    string productName = 2;
+    //游戏类型id
+    int64 typeId = 3;
+    //视讯id
+    int64 platformId = 4;
+    //厂商名
+    string platformName = 5;
+    //排序
+    int64 sort = 6;
+    // 图片地址
+    string iconUrl = 7;
+}
+
+// 联系方式返回
+message SiteContactResp {
+    repeated SiteContact siteContact = 1;
+}
+
+// 联系方式
+message SiteContact {
+    //类型代码 1手机 2座机 3微信 4qq 5邮箱 6在线客服
+    int64 itype = 1;
+    //内容
+    string content = 2;
+}
+
+// 登录游戏
+message MemberPlayReq {
+    // 游戏厂商名字
+    // @inject_tag: valid:"Must;ErrorCode(9254)"
+    string platform = 1;
+    // 游戏id
+    string gameId = 2;
+}
+
+// 登录游戏链接
+message MemberPlayResp {
+    // 游戏厂商登陆入口
+    string loginUrl = 1;
+}
+
+// 领取红包传参
+message RedPacketReceiveReq {
+    // 红包设置ID
+    // @inject_tag: valid:"Must;ErrorCode(11023)"
+    int32 setId = 1;
+}
+
+// 领取红包返回参数
+message RedPacketReceiveResp {
+    // 主键id
+    int32 id = 1;
+    // 订单号
+    string orderId = 2;
+    // 红包设置id
+    int32 setId = 3;
+    // 红包金额
+    double money = 4;
+    // 抢红包的时间
+    int32 updateTime = 5;
+    // 存款起始时间
+    int32 inStartTime = 6;
+    // 存款结束时间
+    int32 inEndTime = 7;
+    // 存款额度
+    double inSum = 8;
+    // 有效打码起始时间
+    int32 auditStartTime = 9;
+    // 有效打码结束时间
+    int32 auditEndTime = 10;
+    // 有效打码量
+    double betSum = 11;
+    // 活动开始时间
+    int32 startTime = 12;
+    // 活动结束时间
+    int32 endTime = 13;
+    // 返回类型 1红包领取成功 2存款不足 3 消费不足
+    int32 returnType = 14;
+}

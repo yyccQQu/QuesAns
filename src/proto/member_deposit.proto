@@ -1,0 +1,318 @@
+syntax = "proto3";
+
+import "index.proto";
+package pb;
+
+// 公司入款支付详情
+message CompanyBank {
+    int64 id = 1;
+    //支付类型1银行卡入款2二维码入款'
+    int64 payType = 2;
+    //银行id
+    int64 bankId = 3;
+    //银行名称，收款方式
+    string bankName = 4;
+    //收款账号
+    string bankNum = 5;
+    //开户行
+    string bankAddress = 6;
+    //收款人
+    string bankUser = 7;
+    //停用金额
+    double stopBalance = 8;
+    //剩余额度
+    double overBalance = 9;
+    //二维码图片数据
+    string payImg = 10;
+    //高级设置状态,1：正常，2：停用
+    int64 isHigh = 11;
+    //备注
+    string remark = 12;
+    //公司入款单次最高存款金額
+    double lineDepositMax = 13;
+    //公司入款单次最低存款金額
+    double lineDepositMin = 14;
+}
+
+//线上入款银行列表返回
+message OnlineSetResp {
+    repeated OnlinePayList pay = 1 ;
+}
+
+// 公司和线上入款银行列表返回
+message IncomeBankListResp {
+    // 线上入款
+    repeated OnlinePayItem pay = 1;
+    // 公司入款
+    repeated CompanyBank bank = 2;
+}
+
+//线上入款支付详情
+message OnlineSet {
+    int64 id = 1;
+    // 三方类型ID
+    int64 payId = 2;
+    // 三方类型名称
+    string payIdName = 3;
+    // 支付方式
+    string payType = 4;
+    // 支付方式名称
+    string payTypeName = 5;
+    // 跳转app（默认2不开启，1为开启wap端跳转APP或H5）
+    int64 isApp = 6;
+    // 商户号(ID)
+    string businessNum = 7;
+    // 单笔限额 下限
+    double singleMin = 8;
+    // 单笔限额 上限
+    double singleMax = 9;
+    // 是否设置为快捷支付
+    int64 isQuick = 10;
+    // 四方id
+    string merId = 11;
+    // 支付编码
+    string PayCode = 12;
+    // 当日限额
+    double dayMax = 13;
+    // 总限额
+    double totalMax = 14;
+}
+
+//支付银行列表
+message PayBankResp {
+    repeated PayBank bank = 1;
+}
+
+//支付银行
+message PayBank {
+    // 支付ID
+    int64 payId = 1;
+    // 银行名称
+    string bankName = 2;
+    // 银行代码
+    string bankCode = 3;
+}
+
+// 支付点卡类型
+message PayPointCard {
+    // 支付ID
+    int64 payId = 1;
+    // 点卡类型名称
+    string pointCardName = 2;
+    // 点卡类型代码
+    string pointCardCode = 3;
+}
+
+// 支付点卡类型返回
+message PayPointCardResp{
+    repeated PayPointCard payPointCard =1;
+}
+
+// 订单号返回
+message OrderResp {
+    string order = 1;
+}
+
+// 入款成功请求数据
+message OrderReq{
+    // 订单号
+    string order = 1;
+    // 入款类型  1公司入款  2线上入款
+    // @inject_tag: valid:"Must;Min(1);Max(2);ErrorCode(11033)"
+    int32 incomeType = 2;
+}
+
+
+// 入款成功返回
+message IncomeSuccessResp{
+    // 订单号
+    string order = 1;
+    // 存入机构
+    string bankName = 2;
+    // 存款人
+    string incomeUser = 3;
+    // 存入金额
+    double incomeMoney = 4;
+    // 存款优惠
+    double depositDiscount = 5;
+    // 额外优惠
+    double otherDiscount = 6;
+}
+
+// 广告数据返回
+message AgencyAdv {
+    // 广告id
+    int64 advId = 1;
+    // 内容
+    string content = 2;
+    // 广告链接
+    string advUrl = 3;
+    // 1 外链 2内链
+    int32 isLink = 4;
+}
+
+// 广告请求数据
+message AdvReq{
+    // 广告类型 -1首页广告 -2存款成功 -3取款成功
+    // @inject_tag: valid:"Must;ErrorCode(11032)"
+    int32 advType = 1;
+}
+
+// 热门游戏和广告
+message AdvGameResp {
+    // 热门游戏
+    repeated ProductInfo  hotGame= 1;
+    // 广告
+    repeated AgencyAdv adv = 2;
+    // cdn地址
+    string cdn = 3;
+}
+
+// 支付银行列表请求数据
+message BankListReq {
+    // @inject_tag: valid:"Must;ErrorCode(5194)"
+    string payId = 1;
+}
+
+//提交一条前台公司入款
+message SiteMemberCompanyIncomeFrontAdd {
+    //收款银行对应的设定id查询时查询设定表翻译具体信息
+    // @inject_tag: valid:"Must;ErrorCode(5137)"
+    int64 setId = 1;
+    //存款人名称
+    // @inject_tag: valid:"Must;Min(2);Max(20);ErrorCode(5190)"
+    string depositAccount = 2;
+    //存入金额
+    // @inject_tag: valid:"Must;Max(999999999);ErrorCode(5144)"
+    double depositMoney = 3;
+    //备注
+    string remark = 4;
+    //存款时间
+    // @inject_tag: valid:"Must;ErrorCode(5191)"
+    int64 depositTime = 5;
+
+    // 备注码
+    // @inject_tag: valid:"Must;Min(1111);Max(9999);ErrorCode(2980)"
+    int64 orderCode = 6 ;
+
+}
+
+// 提交一条前台线上入款
+message SiteMemberOnlineFront {
+    //存款金额
+    // @inject_tag: valid:"Must;Max(999999999);ErrorCode(5144)"
+    double depositMoney = 1;
+    //支付类型ID
+    // @inject_tag: valid:"Must;Min(1);Max(10);ErrorCode(5193)"
+    int64 paidType = 2;
+    //是否快速充值 1是2否
+    // @inject_tag: valid:"Must;Min(1);Max(2);ErrorCode(5192)"
+    int64 isFast = 3;
+    //设定的第三方id
+    // @inject_tag: valid:"Must;ErrorCode(5137)"
+    int64 setId = 4;
+    //备注
+    string remark = 5;
+}
+
+// BuyReq 支付请求
+message BuyReq {
+    // 订单号	170826162633758040
+    // @inject_tag: valid:"Must;ErrorCode(6096)"
+    string order = 1;
+    // 金额(元)	100
+    // @inject_tag: valid:"Must;ErrorCode(6503)"
+    string amount = 2;
+    // 支付方式	1为网银,2为微信，3为支付宝，4为QQ钱包，5为财付通,6银联，7京东钱包，8百度钱包
+    // @inject_tag: valid:"Must;ErrorCode(5193)"
+    int64 payway = 3;
+    // 支付ID
+    // @inject_tag: valid:"Must;ErrorCode(5194)"
+    int64 payType = 4;
+    // 商户表ID	3
+    // @inject_tag: valid:"Must;ErrorCode(5195)"
+    int64 merId = 5;
+    // 商户号	3112374124
+    // @inject_tag: valid:"Must;ErrorCode(6235)"
+    string businessnum = 6;
+    // 银行特殊编码	可为空字符串，网银提交时填写银行编码
+    string bank = 7;
+    // 是否跳转APP	移动端若跳转APP则传1，否则不传或者传0
+    int64 isapp = 8;
+    // 点卡面额	若为点卡支付则必传，否则可不传，若为空不参与签名
+    string cardmoney = 9;
+    // 点卡编号	若为点卡支付则必传，否则可不传，若为空不参与签名
+    string cardnumber = 10;
+    // 点卡编号	点卡密码	若为点卡支付则必传，否则可不传，若为空不参与签名
+    string cardPwd = 11;
+}
+
+// 第三方返回form
+message FormResp{
+    string url = 1;
+}
+
+message OnlinePayList {
+    repeated OnlinePayItem list = 1 ;
+}
+
+message OnlinePayItem {
+    string businessNum = 1 ;
+    int64 merId = 2 ;// 四方id
+    int64 payId = 3 ; //三方类型ID
+    int64 payType = 4; //支付方式
+    string payName = 5 ;  // 支付方式名称
+    int64 setId = 6 ;
+    double singleMax = 7 ;
+    double singleMin = 8 ;
+
+    string payIdName = 9;//三方类型名称
+    int64 isApp = 10; // 跳转app（默认2不开启，1为开启wap端跳转APP或H5）
+    // 是否设置为快捷支付
+    int64 isQuick = 11;
+    // 支付编码
+    string PayCode = 12;
+    // 当日限额
+    double dayMax = 13;
+    // 总限额
+    double totalMax = 14;
+}
+
+// 公司入款支付详情返回
+message CompanyIncomeInfoResp{
+    int64 id = 1;
+    //支付类型1银行卡入款2二维码入款'
+    int64 payType = 2;
+    //银行名称，收款方式
+    string bankName = 3;
+    //收款账号
+    string bankNum = 4;
+    //收款人
+    string bankUser = 5;
+    //二维码图片数据
+    string payImg = 6;
+    //公司入款单次最高存款金額
+    double lineDepositMax = 7;
+    //公司入款单次最低存款金額
+    double lineDepositMin = 8;
+}
+
+// 线上入款支付详情请求参数
+message OnlineIncomeInfoReq{
+    // 支付方式
+    int64 payType = 1;
+    int64 setId = 2 ;
+}
+
+// 线上入款支付详情返回
+message OnlineIncomeInfoResp{
+    string businessNum = 1 ;
+    int64 merId = 2 ;// 四方id
+    int64 payId = 3 ; //三方类型ID
+    int64 payType = 4; //支付方式
+    string payName = 5 ;
+    int64 setId = 6 ;
+    double singleMax = 7 ;
+    double singleMin = 8 ;
+    double balance = 9;
+}

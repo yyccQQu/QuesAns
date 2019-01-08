@@ -1,0 +1,55 @@
+syntax = "proto3";
+
+package pb;
+
+// 未读消息数量返回
+message UnReadResp {
+    int32 count = 1;
+}
+
+// 消息列表
+message MessageList {
+    // 消息id
+    int64 id = 1;
+    // 标题
+    string title = 2;
+    // 内容
+    string content = 3;
+    // 创建时间
+    int64 createTime = 4;
+}
+
+// 公告列表返回
+message NoticeListResp {
+    repeated MessageList messageList = 1;
+    int64 totalNum = 2;
+}
+
+// 消息列表返回
+message MessageListResp {
+    repeated ReadMessage messageList = 1;
+    int32 unReadNum = 2;
+    int32 totalNum = 3;
+}
+
+// 消息id
+message MessageIdReq {
+    //  @inject_tag: valid:"Must;ErrorCode(1007)"
+    int32 id = 1;
+}
+
+// 消息读取
+message ReadMessage {
+    // 消息id
+    int32 id = 1;
+    // 标题
+    string title = 2;
+    // 内容
+    string content = 3;
+    // 消息类型1系统通知,2活动通知,3维护通知,4个人消息
+    int32 mType = 4;
+    // 创建时间
+    int32 createTime = 5;
+    // 状态1未读，2已读
+    int32 status = 6;
+}

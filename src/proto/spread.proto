@@ -1,0 +1,23 @@
+syntax = "proto3";
+
+import "rebate.proto" ;
+
+package pb;
+
+// 推广详情返回结构体
+message SpreadInfoResp {
+    // 推广链接
+    string spreadUrl = 1;
+    // 排行榜
+    repeated LeaderboardResp leaderboard = 2;
+    // 返佣比例
+    repeated ProportionResp list =3;
+}
+
+// 排行榜返回结构体
+message LeaderboardResp {
+    // 姓名
+    string name = 1;
+    // 金额
+    double money = 2;
+}

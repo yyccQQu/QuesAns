@@ -1,0 +1,57 @@
+syntax = "proto3";
+
+import "wallet.proto";
+
+package pb;
+
+// BackWaterListResp 自助反水历史记录
+message BackWaterListResp {
+    // 订单号
+    string orderId = 1;
+    // 有效打码
+    double betall = 2;
+    // 时间
+    int64 createTime = 3;
+    // 反水金额
+    double rebateWater = 4;
+}
+
+// 自助反水历史记录请求
+message BackWaterReq {
+    // 分页数据
+    PageParams pageParams = 1;
+}
+
+// 自助反水历史记录返回
+message BackWaterResp {
+    // 当日已反水
+    double today = 1;
+    // 本周反水
+    double week = 2;
+    // 自助反水记录
+    repeated BackWaterListResp list = 3;
+    // 总条数
+    int64 totalNum = 4;
+}
+
+// 今日自助反水详情
+message BackWaterInfoResp {
+    // 今日有效打码
+    double betall = 1;
+    // 反水金额
+    double allMoney = 2;
+    // 是否可以领取  2 不能领取
+    int64 status = 3;
+    // 反水详情
+    repeated PlatformInfoResp list = 4;
+}
+
+// 会员自助反水平台详情
+message PlatformInfoResp {
+    // 平台名称
+    string platformName = 1;
+    // 有效打码
+    double betall = 2;
+    // 金额
+    double money = 3;
+}

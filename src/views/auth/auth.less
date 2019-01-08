@@ -1,0 +1,231 @@
+
+.register {
+    background: #252232;
+    padding: 0 0.4rem 0.4rem 0.4rem;
+    box-sizing: border-box;
+    line-height: 1;
+    .register-cent {
+        margin-top: 0.5333rem;
+        h3 {
+            text-align: center;
+            font-weight: normal;
+            font-stretch: normal;
+            letter-spacing: 0rem;
+            color: #aa9ce6;
+        }
+        h5 {
+            margin-top: 0.4rem;
+            text-align: center;
+            font-weight: normal;
+            font-stretch: normal;
+            letter-spacing: 0px;
+            color: #8976cc;
+            p:last-child {
+                margin-top: 0.2rem;
+            }
+        }
+        .register-from {
+            padding: 0.5333rem 0.4rem;
+            box-sizing: border-box;
+            margin-top: 0.5333rem;
+            background: #353147;
+            background-blend-mode: normal, normal;
+            box-shadow: 0rem 0.0533rem 0.1333rem 0rem rgba(0, 0, 0, 0.1);
+            border-radius: 0.2667rem;
+            .register-protocol {
+                margin-bottom: 0.5333rem;
+                font-size: 0; // icon {
+                //     vertical-align: middle;
+                //     color: #988dcc;
+                // }
+                p {
+                    margin-left: 0.2933rem;
+                    display: inline-block;
+                    vertical-align: middle;
+                    color: #988dcc;
+                    a {
+                        color: @color-green;
+                    }
+                }
+                .forget{
+                    float: right;
+                    .service{
+                        color: @color-green
+                    }
+                }
+            }
+            .pk-btn {
+                margin-bottom: 0.5333rem;
+            }
+            .has-account {
+                height: 1.0667rem;
+                border: 1px solid @color-green;
+                border-radius: 0.1333rem;
+                color: @color-green;
+                text-align: center;
+                line-height: 1.0667rem;
+            }
+        }
+    }
+}
+
+::-webkit-input-placeholder {
+    color: #726a99;
+}
+
+/* 使用webkit内核的浏览器 */
+
+:-moz-placeholder {
+    color: #726a99;
+}
+
+/* Firefox版本4-18 */
+
+::-moz-placeholder {
+    color: #726a99;
+}
+
+/* Firefox版本19+ */
+
+:-ms-input-placeholder {
+    color: #726a99;
+}
+
+.mgl0 {
+    margin-left: 0 !important;
+}
+
+.left {
+    float: right;
+}
+
+.inps {
+    display: inline-block;
+    width: 70% !important;
+}
+
+.input-code-img {
+    float: right;
+    height: 100%;
+    display: block;
+    width: 30%;
+    background: #ccc;
+    background-blend-mode: normal, normal;
+    height: 100%;
+    div.right {
+        font-size: .37333rem/* 28/75 */
+        ;
+        text-align: center;
+        line-height: 1.04rem/* 78/75 */
+        ;
+        color: #726a99;
+        width: 80%;
+        float: right;
+        height: 100%;
+        border-radius: .13333rem/* 10/75 */
+        ;
+        background: #ccc;
+        background-blend-mode: normal, normal;
+        img {
+            width: 100%;
+            height: 100%;
+        }
+    }
+}
+
+.beerr {
+    color: #ff3a30;
+    opacity: 0.8;
+    margin-top: -0.1867rem;
+    margin-bottom: 0.1333rem;
+    /* 10/75 */
+}
+
+.dis-inb {
+    display: inline-block;
+}
+
+.ps {
+    margin-right: 0.1067rem;
+    /* 20/75 */
+}
+
+.ju {
+    width: 0.4rem;
+    height: 0.4rem;
+    .imgs {
+        width: 100%;
+        height: 100%;
+    }
+}
+
+.fl {
+    float: left;
+}
+
+.register-protocol {
+    height: .4rem;
+    width: 100%;
+}
+
+.j98 {
+    color: #988dcc;
+}
+
+.read-agree-modal {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    .modal-mask {
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background: rgba(0, 0, 0, .4);
+    }
+    .modal-body {
+        padding: 0.4rem;
+        box-sizing: border-box;
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        z-index: 1;
+        transform: translate(-50%, -50%);
+        width: 9.2rem;
+        height: 12rem;
+        background-color: #fff;
+        border-radius: 0.2667rem;
+        overflow-x: hidden;
+        overflow-y: auto;
+        .modal-cent {
+            height: 9.7333rem;
+            color: #646466;
+            overflow-y: auto;
+            overflow-x: hidden;
+            h5 {
+                margin-bottom: 0.3333rem;
+                text-align: center;
+                font-weight: normal;
+                font-stretch: normal;
+                color: #323233
+            }
+        }
+        .pk-btn {
+            margin-top: 0.4rem;
+            width: 100%;
+            color: #fff
+        }
+    }
+}
+
+.auth-logo {
+    display: inline-block;
+    width: 1.6rem;
+    height: 0.72rem;
+    img {
+        width: 100%;
+    }
+}

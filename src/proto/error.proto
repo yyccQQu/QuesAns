@@ -1,0 +1,9 @@
+
+syntax = "proto3";
+
+package validate ;
+
+message Error {
+    int64 code = 1;
+    string msg  = 2;
+}

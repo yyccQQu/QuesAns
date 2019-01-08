@@ -1,0 +1,329 @@
+.allgames {
+    .nav-wrap {
+        padding: 0.267rem 0;
+        background-color: @color-f0f0f5;
+        .navList {
+            margin: 0 auto;
+            width: 9.2rem;
+            height: 0.8rem;
+            border-radius: 0.133rem;
+            border: solid 0.014rem @color-green;
+            overflow: hidden;
+            box-sizing: border-box;
+            a.mint-tab-item {
+                position: relative;
+                padding: 0;
+                width: 1.84rem;
+                height: 0.8rem;
+                font-size: 0.373rem;
+                line-height: 0.8rem;
+                color: @color-green;
+                &:after {
+                    position: absolute;
+                    right: 0;
+                    bottom: 0;
+                    height: 100%;
+                    width: 1px;
+                    content: '';
+                    background-color: @color-green;
+                }
+            }
+            &>a:last-child {
+                &:after {
+                    width: 0;
+                }
+            }
+            .mint-tab-item.is-selected {
+                border-bottom: 0;
+                color: #fff;
+                background-color: @color-green;
+            }
+        }
+    }
+    .ad-img{
+        padding-bottom: .26667rem /* 20/75 */;
+        img{
+            width: 9.2rem /* 690/75 */;
+            height: 1.84rem /* 138/75 */;
+            display: block;
+            border-radius: .13333rem /* 10/75 */;
+            margin:0 auto;
+        }
+    }
+    .gameBox {
+        position: fixed;
+        width: 100%;
+        height: 100%;
+        .mint-tab-container-wrap {
+            .noside {
+                ul {
+                    margin: 0.4rem 0.2rem 0;
+                    width: 100%;
+                }
+            }
+            .haveside {
+                position: relative;
+                width: 100%;
+                height: 100%;
+                .sideScroll {
+                    height: inherit;
+                    width: 24%;
+                    overflow-y: scroll;
+                    .page-part {
+                        width: 100%;
+                        li {
+                            text-align: center;
+                            line-height: 1rem;
+                            font-size: 0.373rem;
+                            color: @color-646466;
+                            border: solid 0.013rem @color-b2b2b2;
+                            border-left: none;
+                            border-bottom: 0;
+                            box-sizing: border-box;
+                            &:last-child{
+                                border-bottom: solid 0.013rem @color-b2b2b2;
+                            }
+                        }
+                        li.active {
+                            border-left: 0.08rem solid @color-green;
+                            border-right: 0;
+                            border-bottom: 0;
+                            background-color: #fff;
+                            &:first-child{
+                                border-top: none;
+                            }
+                        }
+                    }
+                }
+                .right,
+                .sideMaintain {
+                    position: absolute;
+                    top: 0;
+                    right: 0;
+                    width: 76%;
+                    height: inherit;
+                    background-color: #fff;
+                    overflow-y: scroll;
+                    ul {
+                        padding-bottom: 6.5rem;
+                        margin: 0.4rem 0.2rem 0;
+                    }
+                    .search-fast{
+                        padding: .26667rem /* 20/75 */ 0.4rem 0;
+                        display: flex;
+                        justify-content: space-between;
+                        input{
+                            flex:7;
+                            height: .72rem /* 54/75 */;
+                            border:1px solid @color-green;
+                            border-radius: .13333rem /* 10/75 */;
+                            padding-left: .26667rem /* 20/75 */;
+                            font-size: .32rem /* 24/75 */;
+                        }
+                        .serarch{
+                            flex: 2;
+                            display: flex;
+                            justify-content: flex-end;
+                            button{
+                                width: 1.06667rem /* 80/75 */;
+                                height: .72rem /* 54/75 */;
+                                font-size: .32rem /* 24/75 */;
+                                background: @color-green;
+                                line-height: .72rem /* 54/75 */;
+                                text-align: center;
+                                color: #fff;
+                                border:1px solid @color-green;
+                                border-radius: .13333rem /* 10/75 */;
+                                &:active{
+                                    background: @color-00cc8f;
+                                }
+                            }
+                        }
+                       
+                    }
+                }
+                .sideMaintain {
+                    text-align: center;
+                    line-height: 2.6rem;
+                    font-size: 0.4rem;
+                }
+            }
+        }
+    }
+}
+
+.indexGame {
+    .nav-wrap {
+        position: relative;
+        .navList {
+            padding: 0.267rem 0;
+            width: 8.9rem;
+            height: 0.82rem;
+            line-height: 0.72rem;
+            background: transparent;
+            .mint-tab-item {
+                padding: 0;
+                font-size: 0.4rem;
+                text-align: center;
+                color: @color-green;
+                text-overflow: ellipsis;
+                overflow: hidden;
+                white-space: nowrap;
+            }
+            .mint-tab-item.is-selected {
+                position: relative;
+                font-size: 0.48rem;
+                &:before {
+                    position: absolute;
+                    bottom: 0;
+                    left: 50%;
+                    transform: translateX(-50%);
+                    content: "";
+                    width: 0.8rem;
+                    height: 0.08rem;
+                    background-color: @color-green;
+                    border-radius: 0.04rem;
+                }
+            }
+        }
+        .gameRouter {
+            position: absolute;
+            right: 0.533rem;
+            top: 50%;
+            font-size: 0.48rem;
+            color: @color-green;
+            transform: translateY(-50%);
+        }
+    }
+   
+    .gameBox {
+        padding: 0 0.4rem;
+        .haveside {
+            background-color: @color-353355;
+            .sideScroll {
+                line-height: 0.8rem;
+                font-size: 0.373rem;
+                color: @color-a7a3e5;
+                background-color: @color-252232;
+                .page-part {
+                    display: -webkit-box;
+                    display: flex;
+                    text-align: center;
+                    li {
+                        padding: 0 0.12rem;
+                        -webkit-box-flex: 1;
+                        flex: 1;
+                        white-space: nowrap;
+                    }
+                    li.active {
+                        font-weight: bold;
+                        background-color: @color-353355;
+                        color: @color-green;
+                        border-radius: 0.133rem 0.133rem 0 0;
+                    }
+                }
+            }
+            .right {
+                padding-top: 0.28rem;
+                background-color: @color-353355;
+            }
+        }
+        .noside{
+            padding-top: 0.2rem;
+            background-color: @color-353355;            
+        }
+    }
+    li.layout {
+        width: 2.15rem;
+        height: 2.387rem;
+        margin: 0 0.07rem;
+        .gamePic {
+            display: inline-block;
+            width: 1.6rem;
+            height: 1.6rem;
+        }
+        span.text-dots {
+            padding: 0.24rem 0;
+            height: 0.307rem;
+            ;
+            line-height: 0.307rem;
+            ;
+            font-size: 0.32rem;
+            color: @color-green;
+        }
+    }
+}
+
+li.layout {
+    float: left;
+    margin: 0 0.2rem;
+    width: 2rem;
+    height: 2.88rem;
+    text-align: center;
+    .gamePic {
+        position: relative;
+        display: block;
+        width: 2rem;
+        height: 2rem;
+        border-radius: 50%;
+        overflow: hidden;
+        img {
+            width: 100%;
+            height: 100%;
+        }
+        .maintain {
+            z-index: 2;
+            position: absolute;
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: 100%;
+            font-size: 0.373rem;
+            color: #fff;
+            background-color: rgba(0, 0, 0, 0.8);
+            span {
+                display: inline-block;
+                margin-top: 50%;
+                -webkit-transform: translate(0, -50%);
+                transform: translate(0, -50%);
+            }
+        }
+    }
+    span.text-dots {
+        display: block;
+        height: 0.88rem;
+        line-height: 0.88rem;
+        font-size: 0.373rem;
+        color: @color-323233;
+    }
+}
+
+li.maintain {
+    .gamePic {
+        .maintain {
+            display: block;
+        }
+    }
+    span.text-dots {
+        color: @color-c8c8cc;
+    }
+}
+
+.no-data {
+    height: 3.73rem;
+    padding-top: 0.8rem;
+    text-align: center;
+    .no-data-img {
+        margin: 0 auto;
+        width: 2.533rem;
+        height: 2.267rem;
+        opacity: 0.5;
+        font-size: 2.533rem;
+        color: @color-8976cc;
+    }
+    .no-data-text {
+        padding: 0.25rem 0 0.8rem;
+        font-size: 0.427rem;
+        color: @color-8976cc;
+    }
+}

@@ -1,0 +1,344 @@
+syntax = "proto3";
+
+package pb;
+
+import "member_switch.proto";
+
+// 游戏详情
+message GameBalance {
+    // 视讯id
+    int64 id = 3;
+    // 游戏名
+    string name = 1;
+    // 游戏余额
+    double balance = 2;
+    // 游戏名标识
+    string platformName = 4;
+}
+
+// 钱包中心
+message WalletCenterResp {
+    // 账号
+    string account = 1;
+    // 系统余额
+    double balance = 2;
+    // 游戏总余额
+    double gameTotalBalance = 3;
+    repeated GameBalance gameBalance = 4;
+}
+
+// 钱包中心详情返回
+message WalletInfoResp{
+    WalletCenterResp walletCenterResp = 1;
+    MemberSwitchInfo memberSwitchInfo = 2;
+}
+
+// 订单请求
+message MemberOrderReq {
+    // 订单类型:1公司入款2线上入款3取款4额度转换
+    // @inject_tag: valid:"Must;ErrorCode(11004)"
+    int32 orderType = 1;
+    // 时间类型:1最近两小时2今天3最近一周4最近一个月
+    // @inject_tag: valid:"Must;ErrorCode(11005)"
+    int32 timeType = 2;
+    // 分页数据
+    PageParams pageParams = 3;
+}
+
+// 公司入款返回数据
+message MemberCompanyIncomeResp {
+    // 订单号
+    string orderId = 1;
+    // 存入机构
+    string bankName = 2;
+    // 存款人
+    string depositName = 3;
+    // 存款账号
+    string depositAccount = 11;
+    // 收款账号
+    string bankNum = 4;
+    // 存入金额
+    double depositMoney = 5;
+    // 存款优惠
+    double depositDiscount = 6;
+    // 其他优惠
+    double otherDiscount = 7;
+    // 存款时间
+    int64 depositTime = 8;
+    // 提交时间
+    int64 updateTime = 9;
+    // 状态1未处理,2已确认,3已取消
+    int32 status = 10;
+}
+
+// 线上入款返回数据
+message MemberOnlineIncomeResp {
+    // 订单号
+    string orderId = 1;
+    // 存入机构
+    string depositInstitution = 2;
+    // 存入金额
+    double amountDeposit = 3;
+    // 存款优惠
+    double depositDiscount = 4;
+    // 额外优惠
+    double otherDepositDiscount = 5;
+    // 存款时间
+    int64 thirdPayTime = 6;
+    // 状态
+    int32 status = 7;
+}
+
+// 取款返回数据
+message MemberOutRecordResp {
+    // 订单号
+    string orderId = 1;
+    // 提出额度
+    double doMoney = 2;
+    // 稽核费用
+    double feeMoney = 3;
+    // 出款金额
+    double outwardMoney = 4;
+    // 出款时间
+    int64 createTime = 5;
+    // 状态1待审核2已出款3预备出款4取消出款5拒绝出款6满足自动出款
+    int32 status = 6;
+}
+
+// 额度转换返回数据
+message MemberConversionResp {
+    // 游戏厂商名称
+    string memberConversion = 1;
+    // 操作类型 1转入 2转出
+    int32 doType = 2;
+    // 操作金额
+    double doMoney = 3;
+    // 操作时间
+    int64 createTime = 4;
+    // 订单号
+    string orderId = 5;
+}
+
+// 订单返回
+message MemberOrderResp {
+    repeated MemberCompanyIncomeResp memberCompanyIncomeResp = 1;
+    repeated MemberOnlineIncomeResp memberOnlineIncomeResp = 2;
+    repeated MemberOutRecordResp memberOutRecordResp = 3;
+    repeated MemberConversionResp memberConversionResp = 4;
+    int64 totalNum = 5;
+}
+
+// 现金流水请求数据
+message MemberCashRecordReq {
+    // 操作类型1公司入款2线上入款3额度转换4人工存入5人工取出7系统取消出款8线上取款9自助优惠10优惠活动
+    int32 operateType = 1;
+    // 时间类型  1最近两小时2今天3最近一周4最近一个月
+    // @inject_tag: valid:"Must;ErrorCode(11005)"
+    int32 timeType = 2;
+    // 分页数据
+    PageParams pageParams = 3;
+}
+
+// 现金流水
+message MemberCashRecord {
+    // 数据来源1公司入款2线上入款3额度转换4人工存入5人工取出7系统取消出款8线上取款9自助优惠10优惠活动
+    int32 sourceType = 1;
+    // 1存入  2取出
+    int32 doType = 2;
+    // 操作金额
+    double doMoney = 3;
+    // 优惠金额
+    double disMoney = 4;
+    // 操作后金额
+    double balance = 5;
+    // 时间
+    int64 createTime = 6;
+    // 订单号
+    string orderId = 7;
+}
+
+// 现金流水返回数据
+message MemberCashRecordResp {
+    repeated MemberCashRecord memberCashRecord = 1;
+    int64 totalNum = 2;
+}
+
+// 额度转换请求数据
+message MemberConversionReq {
+    // 转换类型，1转入 2转出
+    // @inject_tag: valid:"Must;In(1,2);ErrorCode(9272)"
+    int32 doType = 1;
+    // 转换金额
+    // @inject_tag: valid:"Must;ErrorCode(9271)"
+    int64 money = 2;
+    // 视讯id
+    // @inject_tag: valid:"Must;ErrorCode(11009)"
+    int64 platformId = 3;
+    // 视讯名字
+    // @inject_tag: valid:"Must;ErrorCode(11009)"
+    string platformName = 4;
+}
+
+// 额度转换自动转换数据存储
+message AutoConversionReq {
+    // 当天首存 1选中 2未选中
+    // @inject_tag: valid:"Must;In(1,2);ErrorCode(11011)"
+    int32 dayFirst = 1;
+    // 系统余额比例
+    int32 balanceRatio = 2;
+}
+
+// 额度转换自动转换数据查看
+message AutoConversionResp {
+    // 当天首存 1选中 2未选中
+    int32 dayFirst = 1;
+    // 系统余额比例
+    int32 balanceRatio = 2;
+}
+
+// 首页自动额度转换请求参数
+message AutoMemberConversionReq {
+    // 视讯id
+    // @inject_tag: valid:"Must;ErrorCode(11009)"
+    int64 platformId = 1;
+    // 视讯名字
+    // @inject_tag: valid:"Must;ErrorCode(11009)"
+    string platformName = 2;
+}
+
+// 首页自动额度转换返回参数
+message AutoMemberConversionResp {
+    string remark = 1;
+}
+
+// 投注记录请求参数
+message BetReportInfoReq {
+    //  游戏类型，1 电子，2 视讯，3 捕鱼 4 彩票 5 体育 6 红包 7 小费
+    int32 gameType = 1;
+    // 时间类型:1最近两小时2今天3最近一周4最近一个月
+    // @inject_tag: valid:"Must;ErrorCode(11005)"
+    int32 timeType = 2;
+    // 厂商名称
+    string platform = 3;
+    // 分页数据
+    PageParams pageParams = 4;
+    // 游戏名
+    string gameName = 5;
+}
+
+// 投注记录列表
+message BetReportInfo {
+    // 投注金额
+    double betAll = 8;
+    // 盈利金额
+    double win = 7;
+    // 订单号
+    string orderId = 6;
+    // 游戏名
+    string gameTranslatedName = 1;
+    // 游戏结果
+    string gameResult = 2;
+    // 下注详情
+    string betDetail = 3;
+    // 桌号期数
+    string periodsOrTable = 4;
+    // 反水
+    string retreatWater = 5;
+    // 投注时间
+    int64 betTime = 9;
+    // 游戏类型
+    string productName = 10;
+}
+
+// 投注记录列表返回
+message BetReportInfoResp {
+    repeated BetReportInfo BetReportInfo = 1;
+    int64 totalNum = 2;
+}
+
+// 统计投注记录请求参数
+message BetReportAccountReq {
+    // 时间类型:1昨天2今天3最近一周4最近一个月
+    // @inject_tag: valid:"Must;ErrorCode(11005)"
+    int32 timeType = 1;
+}
+
+// 统计投注记录列表
+message BetReportAccount {
+    // 投注时间
+    int64 betTime = 1;
+    // 星期几
+    string weekday = 6;
+    // 投注量
+    int64 betNum = 2;
+    // 投注额度
+    double betAll = 3;
+    // 有效投注
+    double betValid = 4;
+    // 盈利
+    double win = 5;
+}
+
+// 统计投注记录列表返回
+message BetReportAccountResp {
+    repeated BetReportAccount betReportAccount = 1;
+    // 投注总量
+    int64 totalBetNum = 2;
+    // 投注总额度
+    double totalBetAll = 3;
+    // 有效总投注
+    double totalBetValid = 4;
+    // 总盈利
+    double totalWin = 5;
+}
+
+// 投注类型
+message BetTypeReq {
+    // 投注类型
+    // @inject_tag: valid:"Must;Min(1);Max(8);ErrorCode(6639)"
+    int64 betType = 1;
+}
+
+// 投注类型返回结构体
+message BetTypeResp {
+    // 投注类型
+    repeated BetType betType = 1;
+}
+
+// 投注类型
+message BetType {
+    // 投注名称
+    string name = 1;
+    // 投注平台
+    string value = 2;
+    // topId
+    int64 topId = 3;
+}
+
+// 分页参数
+message PageParams {
+    // 页码数
+    int64 page = 1;
+    // 页面数量
+    int64 pageSize = 2;
+}
+
+// 彩票种类下拉请求参数
+message TopIdRep {
+    // @inject_tag: valid:"Must;Min(1);ErrorCode(1007)"
+    int64 id = 1;
+}
+
+// 彩票种类下拉数据
+message LotteryTicketType {
+    int64 id = 1;
+    // 彩票名称
+    string fcName = 2;
+    // 彩票链接
+    string fc_href = 3;
+}
+
+// 彩票种类下拉返回
+message LotteryTicketTypeResp {
+    repeated LotteryTicketType lotteryTicketType = 1;
+}

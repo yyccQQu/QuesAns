@@ -1,0 +1,155 @@
+syntax = "proto3";
+
+package pb;
+
+// WithDrawInfoResp 取款页面所需数据
+message WithDrawInfoResp {
+    // 会员账号
+    string account = 1;
+    // 会员系统余额
+    double balance = 2;
+    // 会员是否有银行卡
+    int64 has = 3;
+    // 取款最小金额
+    double min = 4;
+    // 取款最大金额
+    double max = 5;
+    // 会员银行卡
+    repeated BankCardListResp bankList = 6;
+    // 会员是否取款密码
+    int64 hasP = 7;
+    // 行政费比率
+    double lineAuditAdminRate = 8;
+}
+
+// BankCardListResp 会员银行卡
+message BankCardListResp {
+    // 银行卡id
+    int64 id = 1;
+    // 会员银行卡银行名称
+    string bankName = 2;
+    // 银行卡卡号
+    string card = 3;
+    // 银行卡开户支行
+    string subbranch = 4;
+    // 是否默认
+    int64 isDefault = 5;
+}
+
+// 取款
+message WithDrawAuditReq {
+    // 取款金额
+    // @inject_tag: valid:"Must;Min(1);ErrorCode(6668)"
+    double outMoney = 1;
+    // 取款密码
+    // @inject_tag: valid:"Must;Length(6);ErrorCode(6617)"
+    string drawPassword = 2;
+    // 出款银行id
+    // @inject_tag: valid:"Must;Min(1);ErrorCode(6669)"
+    int64 bankId = 3;
+}
+
+// 出款稽核返回结构体
+message AuditInfoResp {
+    // 稽核开始时间
+    int64 startTime = 1;
+    // 稽核结束时间
+    int64 endTime = 2;
+    // 出款金额
+    double money = 3;
+    // 优惠
+    double depositMoney = 4;
+    // 行政费
+    double adminMoney = 5;
+    // 手续费
+    double outCharge = 6;
+    // 常态稽核放宽额度
+    double auditRelaxQuota = 7;
+    // 实际出款金额
+    double outMoney = 8;
+    // 是否满足综合稽核 1 满足 2不满足
+    int64 multiple = 9;
+    // 是否满足常态稽核 1 满足 2不满足
+    int64 normal = 10;
+    // 稽核缓存key
+    string key = 11;
+    // 是否首次出款
+    int64 isFirst = 12;
+    // 银行卡id
+    int64 bankId = 13;
+    // 订单id
+    string orderId = 14;
+    //  存款
+    double deposit = 15;
+    // 实际有效投注
+    double betAll = 16;
+    // 电子投注金额
+    double gameElectronics = 17;
+    // 视讯投注金额
+    double gameVideo = 18;
+    // 捕鱼投注金额
+    double gameFishing = 19;
+    // 彩票投注金额
+    double gameLottery = 20;
+    // 体育投注金额
+    double gameSports = 21;
+    // 棋牌投注金额
+    double gameChess = 22;
+    // 行政费用比例
+    double lineAuditAdminRate = 23;
+}
+
+// 继续取款
+message ContinueDrawReq {
+    // 稽核缓存key
+    // @inject_tag: valid:"Must;Min(1);ErrorCode(6610)"
+    string key = 1;
+}
+
+// 继续取款返回结构体
+message ContinueDrawResp {
+    // 订单id
+    string orderId = 1;
+}
+
+// 即时稽核
+message InstantAuditResp {
+    // 开始时间
+    int64 beginTime = 1;
+    // 结束时间
+    int64 endTime = 2;
+    // 存款金额
+    double deposit = 3;
+    // 存款优惠
+    double offer = 4;
+    // 有效投注
+    double bet = 5;
+    // 常态稽核
+    double normal = 6;
+    // 放宽额度
+    double relax = 7;
+    // 行政费
+    double adminFee = 8;
+    // 综合稽核
+    double multiple = 9;
+    // 是否满足常态
+    int64 isNormal = 10;
+    // 是否满足综合
+    int64 isMultiple = 11;
+    // 手续费
+    double outCharge = 12;
+    // 电子投注金额
+    double gameElectronics = 13;
+    // 视讯投注金额
+    double gameVideo = 14;
+    // 捕鱼投注金额
+    double gameFishing = 15;
+    // 彩票投注金额
+    double gameLottery = 16;
+    // 体育投注金额
+    double gameSports = 17;
+    // 棋牌投注金额
+    double gameChess = 18;
+    // 行政费用比例
+    double lineAuditAdminRate = 19;
+}

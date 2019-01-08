@@ -1,0 +1,43 @@
+syntax = "proto3";
+
+package pb;
+
+// 返佣
+message RebateList {
+    // 有效打码
+    double validBet = 1;
+    // 返佣金额
+    double rebate = 2;
+    // 时间
+    int64 createTime = 3;
+}
+
+// 返佣返回结构体
+message RebateListResp {
+    // 推广人数
+    int64 spreadNum = 1;
+    // 推广金额
+    double spreadMoney = 2;
+    // 返佣历史
+    repeated RebateList list = 3;
+    // 总条数
+    int64 totalNum = 4;
+    // 返佣比例
+    repeated ProportionResp protion = 5;
+}
+
+// SiteMemberSpreadProportionResp 站点会员返利比例
+message ProportionResp {
+    // 名称
+    string name = 1;
+    // 子集
+    repeated RebateSetPlatformResp child = 4;
+}
+
+// SiteMemberRebateSetPlatformResp 站点会员返利比例返回结构体
+message RebateSetPlatformResp {
+    // 返利金额
+    double validMoney = 1;
+    // 比例
+    double rate = 2;
+}
