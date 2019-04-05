@@ -14,8 +14,10 @@ module.exports = {
         app: './src/main.js'
     },
     output: {
-        path: config.build.assetsRoot,
-        filename: 'pk-skin.min.js',
+        // path: config.build.assetsRoot,
+        // filename: 'pk-skin.min.js',
+        path: path.resolve(__dirname, 'dist'),
+        filename: '[name].bundle.js',
         publicPath: process.env.NODE_ENV === 'production'
             ? config.build.assetsPublicPath
             : config.dev.assetsPublicPath
